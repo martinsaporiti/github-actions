@@ -1,0 +1,22 @@
+name: Manual
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Maual
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name }}
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Print Branch Name
+        run: echo ${{ environment }}
+
+      - name: Print Environmetn Name
+        run: echo ${{ github.ref_name }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        run: cat sample.txt

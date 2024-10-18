@@ -12,13 +12,12 @@ jobs:
       contents: write
     steps:
       - name: Print Branch Name
-        run: echo ${{ environment }}
-
-      - name: Print Environmetn Name
         run: echo ${{ github.ref_name }}
 
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Print File
-        run: cat sample.txt 
+        run: |
+          cat sample.txt
+          git branch

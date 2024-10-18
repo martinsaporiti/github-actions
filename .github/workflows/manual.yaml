@@ -20,4 +20,4 @@ jobs:
       - name: Print File
         run: |
           cat sample.txt
-          echo git branch
+          git branch

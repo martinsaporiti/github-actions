@@ -19,5 +19,5 @@ jobs:
 
       - name: Print File
         run: |
-          cat sample.txt
-          git branch
+          echo cat sample.txt
+          echo git branch

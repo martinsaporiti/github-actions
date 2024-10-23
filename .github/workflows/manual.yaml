@@ -19,7 +19,7 @@ jobs:
   deploy:
     name: Maual
     runs-on: ubuntu-latest
-    environment:  ${{ github.event.workflow_run.head_branch }}
+    # environment:  ${{ github.event.workflow_run.head_branch }}
     permissions:
       id-token: write
       contents: write
@@ -49,3 +49,11 @@ jobs:
         run: |
           cat sample.txt
           git branch
+      
+      - name: Set environment
+        run: |
+          echo "ENVIRONMENT= ${{ env.branch }}" >> $GITHUB_ENV
+          
+      - name: Print Environment
+        run: echo ${{ vars.test_var }}
+          

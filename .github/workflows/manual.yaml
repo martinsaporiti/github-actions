@@ -2,10 +2,15 @@ name: Manual
 on:
   workflow_dispatch:
 
-  push:
-    branches:
-      - main
-      - develop
+  workflow_run:
+    workflows: ["First"]  # Nombre del workflow previo
+    types:
+      - completed
+
+  # push:
+  #   branches:
+  #     - main
+  #     - develop
 
 env:
   branch: ${{ github.event.workflow_run.head_branch }}
@@ -23,9 +28,7 @@ jobs:
     env:
       branch: ${{ github.event.workflow_run.head_branch }}
 
-  
-    
-    if: ${{ branch }} == 'develop' || github.event_name == 'push'
+    # if: ${{ branch }} == 'develop' || github.event_name == 'push'
 
     steps:
       - name: Determine branch

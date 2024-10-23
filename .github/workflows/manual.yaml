@@ -12,21 +12,20 @@ on:
   #     - main
   #     - develop
 
-env:
-  branch: ${{ github.event.workflow_run.head_branch }}
+# env:
+#   branch: ${{ github.event.workflow_run.head_branch }}
 
 jobs:
   deploy:
     name: Maual
     runs-on: ubuntu-latest
-
     environment:  ${{ github.event.workflow_run.head_branch }}
     permissions:
       id-token: write
       contents: write
     
     env:
-      branch: ${{ github.event.workflow_run.head_branch }}
+      branch: ${{ github.ref_name }}
 
     # if: ${{ branch }} == 'develop' || github.event_name == 'push'
 
@@ -35,7 +34,7 @@ jobs:
         id: get_branch
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch"]; then
-            echo "branch=$(echo ${GITHUB_HEAD_REF})" >> $GITHUB_ENV
+            echo "branch=$(echo ${github.event.workflow_run.head_branch})" >> $GITHUB_ENV
           fi
 
       - name: Print Branch Name

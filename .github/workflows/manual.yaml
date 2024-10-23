@@ -7,8 +7,8 @@ on:
       - main
       - develop
 
-# env:
-#   branch: ${{ github.event.workflow_run.head_branch }}
+env:
+  branch: ${{ github.event.workflow_run.head_branch }}
 
 jobs:
   deploy:
@@ -20,9 +20,21 @@ jobs:
       id-token: write
       contents: write
     
-    if: github.ref == 'refs/heads/develop' || github.event_name == 'push'
+    env:
+      branch: ${{ github.event.workflow_run.head_branch }}
+
+  
+    
+    if: ${{ branch }} == 'develop' || github.event_name == 'push'
 
     steps:
+      - name: Determine branch
+        id: get_branch
+        run: |
+          if [ "${ github.event_name }" == 'push']; then
+            echo "branch=$(echo ${GITHUB_HEAD_REF})" >> $GITHUB_ENV
+          fi
+
       - name: Print Branch Name
         run: echo ${{ github.ref_name }}
 

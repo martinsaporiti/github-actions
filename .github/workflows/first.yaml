@@ -1,0 +1,16 @@
+name: First
+
+on:
+  push:
+
+jobs:
+  deploy:
+    name: Firts
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name }}
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Print Branch Name
+        run: echo ${{ github.ref_name }}

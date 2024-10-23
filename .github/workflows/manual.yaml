@@ -34,7 +34,7 @@ jobs:
       - name: Determine branch
         id: get_branch
         run: |
-          if [ "${{ github.event_name }}" == "push"]; then
+          if [ "${{ github.event_name }}" == "workflow_dispatch"]; then
             echo "branch=$(echo ${GITHUB_HEAD_REF})" >> $GITHUB_ENV
           fi
 

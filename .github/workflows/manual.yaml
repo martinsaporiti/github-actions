@@ -39,10 +39,12 @@ jobs:
           fi
 
       - name: Print Branch Name
-        run: echo ${{ github.ref_name }}
+        run: echo ${{ branch }}
 
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ branch }}
 
       - name: Print File
         run: |

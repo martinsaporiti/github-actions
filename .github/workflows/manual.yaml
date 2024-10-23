@@ -52,7 +52,7 @@ jobs:
       
       - name: Set environment
         run: |
-          echo "ENVIRONMENT= ${{ env.branch }}" >> $GITHUB_ENV
+          echo "environment= ${{ env.branch }}" >> $GITHUB_ENV
           
       - name: Print Environment
         run: echo ${{ vars.test_var }}

@@ -2,14 +2,22 @@ name: Manual
 on:
   workflow_dispatch:
 
+
+env:
+  branch: ${{ github.event.workflow_run.head_branch }}
+
 jobs:
   deploy:
     name: Maual
     runs-on: ubuntu-latest
-    environment: ${{ github.ref_name }}
+
+    environment:  ${{ github.event.workflow_run.head_branch }}
     permissions:
       id-token: write
       contents: write
+    
+    if: ${{ branch }} == 'refs/heads/develop'
+
     steps:
       - name: Print Branch Name
         run: echo ${{ github.ref_name }}

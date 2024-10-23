@@ -2,6 +2,10 @@ name: Manual
 on:
   workflow_dispatch:
 
+  push:
+    branches:
+      - main
+      - develop
 
 env:
   branch: ${{ github.event.workflow_run.head_branch }}
@@ -16,7 +20,7 @@ jobs:
       id-token: write
       contents: write
     
-    if: ${{ branch }} == 'refs/heads/develop'
+    if: ${{ branch }} == 'refs/heads/develop' || github.event_name == 'push'
 
     steps:
       - name: Print Branch Name

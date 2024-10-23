@@ -38,12 +38,12 @@ jobs:
           fi
 
       - name: Print Branch Name
-        run: echo ${{ branch }}
+        run: echo ${{ env.branch }}
 
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ branch }}
+          ref: ${{ env.branch }}
 
       - name: Print File
         run: |
